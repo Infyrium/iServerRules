@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.UUID;
 
 import net.infyrium.iserversettings.iServerSettingsMain;
+import net.kyori.adventure.text.Component;
 
 public class PlayerEventListener implements Listener {
 
@@ -103,7 +104,7 @@ public class PlayerEventListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (noMessage) {
-            event.setJoinMessage(null);
+            event.joinMessage(null);
         }
         if (noPlayer) {
             for (Player online : plugin.getServer().getOnlinePlayers()) {
@@ -119,21 +120,22 @@ public class PlayerEventListener implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         if (noMessage) {
-            event.setQuitMessage(null);
+            event.quitMessage(null);
         }
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         if (noMessage) {
-            event.setDeathMessage(null);
+            event.deathMessage(null);
         }
     }
 
     @EventHandler
     public void onPlayerKick(PlayerKickEvent event) {
         if (noMessage) {
-            event.setLeaveMessage(null);
+            // Null is not allowed here
+            event.leaveMessage(Component.empty());
         }
     }
 

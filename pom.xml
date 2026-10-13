@@ -13,7 +13,7 @@
     <properties>
         <!-- Building -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
 
         <!-- Manifest -->
         <manifest.contact>https://euj3ne.ru</manifest.contact>
