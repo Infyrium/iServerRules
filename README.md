@@ -1,1 +1,1 @@
-# mc-iserversettings
+# iServerSettings
