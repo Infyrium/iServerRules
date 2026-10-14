@@ -181,11 +181,11 @@ public class BlockEventListener implements Listener {
 
     public void applyWorldSettings() {
         for (World world : Bukkit.getWorlds()) {
-            disableGameRule(world, GameRule.DO_DAYLIGHT_CYCLE, fixedTime);
+            disableGameRule(world, GameRule.DO_DAYLIGHT_CYCLE, "dodaylightcycle", fixedTime);
             if (fixedTime) {
                 world.setTime(fixedTimeMeaning);
             }
-            disableGameRule(world, GameRule.MOB_GRIEFING, noMobGriefing);
+            disableGameRule(world, GameRule.MOB_GRIEFING, "mobgriefing", noMobGriefing);
         }
         if (noMobSpawn) {
             for (World world : Bukkit.getWorlds()) {
@@ -201,9 +201,10 @@ public class BlockEventListener implements Listener {
     /**
      * Sets the gamerule to false and remembers its previous value in the world data.
      * When the setting is turned off, restores the previous value.
+     * The data key is fixed: since 1.21.11 rule names are "minecraft:..." and change between versions.
      */
-    private void disableGameRule(World world, GameRule<Boolean> rule, boolean disable) {
-        NamespacedKey key = new NamespacedKey(plugin, rule.getName().toLowerCase());
+    private void disableGameRule(World world, GameRule<Boolean> rule, String dataKey, boolean disable) {
+        NamespacedKey key = new NamespacedKey(plugin, dataKey);
         PersistentDataContainer data = world.getPersistentDataContainer();
 
         if (disable) {
