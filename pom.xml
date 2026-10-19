@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.infyrium.iserversettings</groupId>
-    <artifactId>iServerSettingsMain</artifactId>
+    <groupId>net.infyrium</groupId>
+    <artifactId>iserversettings</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
@@ -19,15 +19,17 @@
         <manifest.contact>https://euj3ne.ru</manifest.contact>
         <manifest.developer>euj3ne</manifest.developer>
         <manifest.github>https://github.com/euj3ne</manifest.github>
-        <manifest.version>${project.version}</manifest.version>
 
         <!-- Dependencies -->
         <paper.api.version>1.21.4-R0.1-SNAPSHOT</paper.api.version>
-        
+        <packetevents.version>2.12.0</packetevents.version>
+
         <!-- Maven plugins -->
-        <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
-        <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
+        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+        <maven.jar.plugin.version>3.4.2</maven.jar.plugin.version>
         <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
+        <maven.javadoc.plugin.version>3.6.3</maven.javadoc.plugin.version>
+        <maven.shade.plugin.version>3.6.1</maven.shade.plugin.version>
     </properties>
 
     <repositories>
@@ -53,10 +55,12 @@
             <version>${paper.api.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- PacketEvents API -->
         <dependency>
             <groupId>com.github.retrooper</groupId>
             <artifactId>packetevents-spigot</artifactId>
-            <version>2.12.0</version>
+            <version>${packetevents.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -80,8 +84,7 @@
                         <arg>-Xlint:deprecation</arg>
                         <arg>-Xlint:unchecked</arg>
                     </compilerArgs>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <release>${java.version}</release>
                 </configuration>
             </plugin>
 
@@ -100,7 +103,9 @@
                             <Contact>${manifest.contact}</Contact>
                             <Developer>${manifest.developer}</Developer>
                             <GitHub>${manifest.github}</GitHub>
-                            <Version>${manifest.version}</Version>
+                            <Version>${project.version}</Version>
+                            <!-- Paper: built with Mojang names, so the jar is not remapped on load -->
+                            <paperweight-mappings-namespace>mojang</paperweight-mappings-namespace>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -125,7 +130,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.6.3</version>
+                <version>${maven.javadoc.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -140,7 +145,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>${maven.shade.plugin.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -153,7 +158,7 @@
                     </execution>
                 </executions>
             </plugin>
- 
+
         </plugins>
     </build>
 </project>

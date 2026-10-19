@@ -1,6 +1,6 @@
 name: ${project.name}
 version: ${project.version}
-main: ${groupId}.${artifactId}
+main: net.infyrium.iserversettings.iServerSettingsMain
 api-version: '1.21'
 authors: [euj3ne]
 description: ${project.description}
