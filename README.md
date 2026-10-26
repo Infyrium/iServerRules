@@ -1,1 +1,1 @@
-# iServerSettings
+# iServerRules

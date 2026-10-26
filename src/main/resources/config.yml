@@ -1,19 +1,22 @@
 settings:
+  noPlayer: false # Players don't see each other and the tab list shows only themselves
+
+# Settings for all worlds
+default:
   player:
-    noPlayer: false
-    noMessage: false
-    noDamage: false
+    noDamage: false # Only players: armor stands and frames are protected by noBreak
     noHunger: false
+    noMessage: false # No join, quit, death, kick messages
     noChat: false
-    gameMode: SURVIVAL
+    gameMode: '' # SURVIVAL, CREATIVE, ADVENTURE, SPECTATOR, empty - don't change; set on join and world change
     noCommands:
       enabled: false
       allowedCommands:
         - help
         - spawn
-
+  # noBreak, noPlace, noInteract, noChat, noCommands don't stop players with iserverrules.bypass
   world:
-    noBreak: false
+    noBreak: false # Blocks, armor stands, frames, paintings, boats, minecarts
     noPlace: false
     noInteract: false
     noFluidFlow: false
@@ -23,9 +26,24 @@ settings:
     noLeafDecay: false
     noGrowth: false
     noMobGriefing: false
-    noMobSpawn: false
+    # Mobs that don't appear, by spawn reason: NATURAL, SPAWNER, SPAWNER_EGG, BREEDING, CHUNK_GEN, ...
+    # ALL - every reason except CUSTOM (plugins) and COMMAND (/summon). Such mobs already in the world are removed.
+    # Reasons: https://jd.papermc.io/paper/1.21.4/org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html
+    noMobSpawn: []
     fixedTime:
       enabled: false
       time: 6000
+
+# Overrides for specific worlds, only what differs from default
+worlds: {}
+# Example:
+# worlds:
+#   lobby:
+#     player:
+#       noDamage: true
+#       gameMode: ADVENTURE
+#     world:
+#       noBreak: true
+#       noMobSpawn: [ALL]
 
 configVersion: 1 # Format version of this file, do not change

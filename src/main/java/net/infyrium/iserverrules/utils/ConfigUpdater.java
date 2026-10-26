@@ -1,4 +1,4 @@
-package net.infyrium.iserversettings.utils;
+package net.infyrium.iserverrules.utils;
 
 import java.io.File;
 import java.io.IOException;

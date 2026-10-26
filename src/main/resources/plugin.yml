@@ -1,9 +1,14 @@
 name: ${project.name}
 version: ${project.version}
-main: net.infyrium.iserversettings.iServerSettingsMain
+main: net.infyrium.iserverrules.iServerRulesMain
 api-version: '1.21'
 authors: [euj3ne]
 description: ${project.description}
 website: ${project.url}
 depend: [packetevents]
 softdepend: []
+
+permissions:
+  iserverrules.bypass:
+    description: Not stopped by noBreak, noPlace, noInteract, noChat, noCommands
+    default: false

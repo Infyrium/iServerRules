@@ -2,11 +2,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.infyrium</groupId>
-    <artifactId>iserversettings</artifactId>
+    <artifactId>iserverrules</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
-    <name>iServerSettings</name>
+    <name>iServerRules</name>
     <description>None.</description>
     <url>https://infyrium.net</url>
 
